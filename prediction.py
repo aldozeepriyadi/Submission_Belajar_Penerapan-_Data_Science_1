@@ -5,15 +5,12 @@ import warnings
 from sklearn.preprocessing import FunctionTransformer
 
 def simple_preprocessing(x):
-  # Hapus Kolom yang tidak diperlukan
-  x = x.drop(columns=['EmployeeId','EmployeeCount', 'StandardHours', 'Over18'])
 
-  # Menghapus Fitur berdasarkan hasil uji chi-square
+  x = x.drop(columns=['EmployeeId','EmployeeCount', 'StandardHours', 'Over18'])
   x =  x.drop(columns=['PerformanceRating', 'Education',  'RelationshipSatisfaction', 'EducationField'])
 
   return x
 
-# Bungkus hasil preprocessing menggunakan function_transformer
 preprocessor = FunctionTransformer(simple_preprocessing)
 load_model = joblib.load('model_rf.pkl')
 # Membuat data baru secara acak
